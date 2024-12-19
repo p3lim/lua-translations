@@ -85,9 +85,9 @@ elif sys.argv[1] == 'template':
   for file in sorted(glob('**/*.lua', recursive=True)):
     with open(file) as f:
       for line in f:
-        line = STRING_PATTERN.match(line)
-        if line:
-          s = line.group(1)
+        m = STRING_PATTERN.match(line)
+        if m:
+          s = m.group(1)
           if s not in strings:
             strings.append(s)
 
