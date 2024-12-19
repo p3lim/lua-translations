@@ -85,6 +85,9 @@ elif sys.argv[1] == 'template':
   for file in sorted(glob('**/*.lua', recursive=True)):
     with open(file) as f:
       for line in f:
+        if line.find('bot-ignore') > 0:
+          continue
+
         m = STRING_PATTERN.match(line)
         if m:
           s = m.group(1)

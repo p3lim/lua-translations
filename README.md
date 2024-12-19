@@ -8,24 +8,6 @@ It has two functionalities and a bunch of requirements, and the function keyword
 
 This function will do the following:
 
-1. It will read all Lua files in the working directory
-2. It will look for any localization strings
-3. It will update a [GitHub issue template](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository) with the strings, to act as a form for people to submit translations
-
-It has some very specific requirements:
-
-1. The strings will be matched using a regex pattern: `L\[["'](.*)["']\]`
-  - Example Lua object: `L["This is the string"]`
-  - Example output string: `This is the string`
-2. It expects a [GitHub issue label](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels) named `translation` to exist
-3. It auto-assigns the issue from the issue form to the GitHub repository owner
-
-Using it in a [GitHub workflow](https://docs.github.com/en/actions) with an action to auto-create pull requests (or auto-commit directly) is recommended.
-
-### Function: template
-
-This function will do the following:
-
 1. It will read a specific issue
   - Which issue is defined by two environment variables:
     - `GITHUB_REPOSITORY`, expected format: `<repo_owner>/<repo_name>`, e.g. `p3lim/lua-translations`
@@ -39,6 +21,25 @@ This function will do the following:
 This is _really_ specific to a certain usecase (mine), so if you want to use this for yourself it's recommended to fork the project and adjust these templates yourself (or use my library).
 
 Using it in a [GitHub workflow](https://docs.github.com/en/actions) with an action to auto-create pull requests (or auto-commit directly) is recommended, see below for an example.
+
+### Function: template
+
+This function will do the following:
+
+1. It will read all Lua files in the working directory
+2. It will look for any localization strings
+  - unless they have `bot-ignore` anywhere on the line
+3. It will update a [GitHub issue template](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository) with the strings, to act as a form for people to submit translations
+
+It has some very specific requirements:
+
+1. The strings will be matched using a regex pattern: `L\[["'](.*)["']\]`
+  - Example Lua object: `L["This is the string"]`
+  - Example output string: `This is the string`
+2. It expects a [GitHub issue label](https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels) named `translation` to exist
+3. It auto-assigns the issue from the issue form to the GitHub repository owner
+
+Using it in a [GitHub workflow](https://docs.github.com/en/actions) with an action to auto-create pull requests (or auto-commit directly) is recommended.
 
 ## Example workflow
 
