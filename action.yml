@@ -1,0 +1,14 @@
+name: Lua Translation Utility
+description: Manages GitHub issue templates and creates pull requests based on translation strings
+branding:
+  icon: type
+  color: yellow
+inputs:
+  action:
+    description: Which action to run
+    required: true
+runs:
+  using: composite
+  steps:
+    - run: python3 "$GITHUB_ACTION_PATH/action.py" "${{ inputs.action }}"
+      shell: bash
