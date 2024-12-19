@@ -48,7 +48,7 @@ body:
 INPUT_TEMPLATE = '''
   - type: input
     attributes:
-      label: '{}'
+      label: '"{}"'
       placeholder: Translation here
     validations:
       required: true
