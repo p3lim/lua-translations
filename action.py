@@ -91,7 +91,7 @@ elif sys.argv[1] == 'template':
         match = STRING_PATTERN.match(line)
         for match in STRING_PATTERN.finditer(line):
           for group in match.groups():
-            string = json.dumps(group).replace("'", r"\'")
+            string = group.replace("'", r"\'")
             if not string in strings:
               strings.append(string)
 
