@@ -7,7 +7,7 @@ import json
 from glob import glob
 import urllib.request
 
-STRING_PATTERN = re.compile(r'.*L\[["\'](.+)["\'"]\].*')
+STRING_PATTERN = re.compile(r'L\[["\'](.*?)["\'"]\]')
 
 ISSUE_TEMPLATE = '''
 # This file is auto-generated!
@@ -88,11 +88,11 @@ elif sys.argv[1] == 'template':
         if line.find('bot-ignore') > 0:
           continue
 
-        m = STRING_PATTERN.match(line)
-        if m:
-          s = m.group(1)
-          if s not in strings:
-            strings.append(s)
+        match = STRING_PATTERN.match(line)
+        for match in STRING_PATTERN.finditer(line):
+          for group in match.groups():
+            if not group in strings:
+              strings.append(group)
 
   inputs = []
   for s in sorted(strings):
