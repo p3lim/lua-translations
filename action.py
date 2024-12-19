@@ -7,7 +7,7 @@ import json
 from glob import glob
 import urllib.request
 
-STRING_PATTERN = re.compile(r'L\[["\'](.*)["\']\]')
+STRING_PATTERN = re.compile(r'.*L\[["\'](.+)["\'"]\].*')
 
 ISSUE_TEMPLATE = '''
 # This file is auto-generated!
