@@ -48,7 +48,7 @@ body:
 INPUT_TEMPLATE = '''
   - type: input
     attributes:
-      label: '"{}"'
+      label: '{}'
       placeholder: Translation here
     validations:
       required: true
@@ -91,8 +91,9 @@ elif sys.argv[1] == 'template':
         match = STRING_PATTERN.match(line)
         for match in STRING_PATTERN.finditer(line):
           for group in match.groups():
-            if not group in strings:
-              strings.append(group)
+            string = json.dumps(group).replace("'", r"\'")
+            if not string in strings:
+              strings.append(string)
 
   inputs = []
   for s in sorted(strings):
