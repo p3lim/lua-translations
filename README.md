@@ -63,7 +63,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Update issue template
-        uses: p3lim/lua-translations@v1
+        uses: p3lim/lua-translations@master # or pin to sha
         with:
           action: template
 
@@ -97,7 +97,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Extract translations
-        uses: p3lim/lua-translations@v1
+        uses: p3lim/lua-translations@master # or pin to sha
         with:
           action: extract
         id: extract
