@@ -10,8 +10,10 @@ inputs:
 outputs:
   lang:
     description: The language updated from the 'extract' action
+    value: ${{ steps.action.outputs.lang }}
 runs:
   using: composite
   steps:
     - run: python3 "$GITHUB_ACTION_PATH/action.py" "${{ inputs.action }}"
       shell: bash
+      id: action
