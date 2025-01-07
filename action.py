@@ -79,6 +79,10 @@ if sys.argv[1] == 'extract':
 
   with open(os.path.join(os.getcwd(), 'locale/', lang + '.lua'), 'w') as f:
     f.write(LOCALE_TEMPLATE.format(lang, '\n'.join(sorted(lines))).strip() + '\n')
+
+  # github action output
+  with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+    print(f'lang={lang}', file=fh)
 elif sys.argv[1] == 'template':
   strings = []
 

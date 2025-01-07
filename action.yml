@@ -7,6 +7,9 @@ inputs:
   action:
     description: Which action to run
     required: true
+outputs:
+  lang:
+    description: The language updated from the 'extract' action
 runs:
   using: composite
   steps:
