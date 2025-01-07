@@ -75,7 +75,7 @@ if sys.argv[1] == 'extract':
   lines = []
   for block in body[1:]:
     orig, translation, *_ = block.split('\n\n')
-    lines.append(TRANSLATION_TEMPLATE.format(orig, translation).strip())
+    lines.append(TRANSLATION_TEMPLATE.format(orig.replace('"', r'\"'), translation.replace('"', r'\"')).strip())
 
   with open(os.path.join(os.getcwd(), 'locale/', lang + '.lua'), 'w') as f:
     f.write(LOCALE_TEMPLATE.format(lang, '\n'.join(sorted(lines))).strip() + '\n')
