@@ -87,6 +87,10 @@ elif sys.argv[1] == 'template':
   strings = []
 
   for file in sorted(glob('**/*.lua', recursive=True)):
+    if 'locale/' in file:
+      # ignore strings within localization files
+      continue
+
     with open(file) as f:
       for line in f:
         if line.find('bot-ignore') > 0:
